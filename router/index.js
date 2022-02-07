@@ -7,6 +7,7 @@ const {
 } = require('../controllers/userControllers');
 const {
   categoryCreateController,
+  categoriesListController,
 } = require('../controllers/categoryControllers');
 const tokenValidate = require('../middlewares/tokenValidate');
 
@@ -17,5 +18,6 @@ router.post('/login', userLoginController);
 router.get('/user', tokenValidate, userListController);
 router.get('/user/:id', tokenValidate, userByIdController);
 router.post('/categories', tokenValidate, categoryCreateController);
+router.get('/categories', tokenValidate, categoriesListController);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const categoryCreate = require('../services/category/categoryCreate');
-const { created } = require('../utils/dictionary/statusCode');
+const categoryList = require('../services/category/categoriesList');
+const { created, success } = require('../utils/dictionary/statusCode');
 
 const categoryCreateController = async (request, resolve, next) => {
   try {
@@ -12,6 +13,17 @@ const categoryCreateController = async (request, resolve, next) => {
   }
 };
 
+const categoriesListController = async (_request, resolve, next) => {
+  try {
+    const result = await categoryList();
+    return resolve.status(success).json(result);
+  } catch (error) {
+    console.log('GET ALL CATEGORIES: ', error);
+    return next(error);
+  }
+};
+
 module.exports = {
   categoryCreateController,
+  categoriesListController,
 };
