@@ -1,7 +1,7 @@
-const { loginSchema } = require('../utils/dictionary/schemas');
-const { User } = require('../models');
-const errorConstructor = require('../utils/functions/errorConstructor');
-const { badRequest } = require('../utils/dictionary/statusCode');
+const { loginSchema } = require('../../utils/dictionary/schemas');
+const { User } = require('../../models');
+const errorConstructor = require('../../utils/functions/errorConstructor');
+const { badRequest } = require('../../utils/dictionary/statusCode');
 
 const loginValidate = async (user) => {
   const { error } = loginSchema.validate(user);

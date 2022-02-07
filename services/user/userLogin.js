@@ -1,4 +1,4 @@
-const { tokenGenerator } = require('../middlewares/tokenGenerator');
+const { tokenGenerator } = require('../../middlewares/tokenGenerator');
 const loginValidate = require('./loginValidate');
 
 const userCreate = async (user) => {

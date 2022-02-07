@@ -1,5 +1,5 @@
-const { tokenGenerator } = require('../middlewares/tokenGenerator');
-const { User } = require('../models');
+const { tokenGenerator } = require('../../middlewares/tokenGenerator');
+const { User } = require('../../models');
 const validateUser = require('./userValidate');
 
 const userCreate = async (user) => {

@@ -1,7 +1,7 @@
-const userCreate = require('../services/userCreate');
-const userLogin = require('../services/userLogin');
-const userList = require('../services/userList');
-const userById = require('../services/userById');
+const userCreate = require('../services/user/userCreate');
+const userLogin = require('../services/user/userLogin');
+const userList = require('../services/user/userList');
+const userById = require('../services/user/userById');
 const { created, success } = require('../utils/dictionary/statusCode');
 
 const userCreateController = async (request, resolve, next) => {
