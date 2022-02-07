@@ -20,10 +20,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'user',
-          key: 'userId',
+          model: 'Users',
+          key: 'id',
           deferrable: Sequelize.INITIALLY_IMMEDIATE,
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
