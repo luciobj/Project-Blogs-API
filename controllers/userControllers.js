@@ -1,5 +1,6 @@
 const userCreate = require('../services/userCreate');
 const userLogin = require('../services/userLogin');
+const userList = require('../services/userList');
 const { created, success } = require('../utils/dictionary/statusCode');
 
 const userCreateController = async (request, resolve, next) => {
@@ -25,7 +26,18 @@ const userLoginController = async (request, resolve, next) => {
   }
 };
 
+const userListController = async (_request, resolve, next) => {
+  try {
+    const result = await userList();
+    return resolve.status(success).json(result);
+  } catch (error) {
+    console.log('GET ALL USERS: ', error);
+    return next(error);
+  }
+};
+
 module.exports = {
   userCreateController,
   userLoginController,
+  userListController,
 };
