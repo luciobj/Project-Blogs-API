@@ -1,4 +1,4 @@
-const { userSchema } = require('../utils/dictionary/schema');
+const { userSchema } = require('../utils/dictionary/schemas');
 const { User } = require('../models');
 const errorConstructor = require('../utils/functions/errorConstructor');
 const { conflict, badRequest } = require('../utils/dictionary/statusCode');
