@@ -8,12 +8,10 @@ const userValidate = async (user) => {
   const { email } = user;
   if (!error) {
     const foundUser = await User.findOne({ where: { email } });
-    // console.log(foundUser);
     if (!foundUser) {
       return true;
     }
-    const message = 'User already registered';
-    throw errorConstructor(conflict, message);
+    throw errorConstructor(conflict, 'User already registered');
   }
   throw errorConstructor(badRequest, error.message);
 };
