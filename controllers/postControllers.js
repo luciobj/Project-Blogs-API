@@ -3,6 +3,7 @@ const postsList = require('../services/post/postsList');
 const postById = require('../services/post/postById');
 const postUpdate = require('../services/post/postUpdate');
 const postDeleteById = require('../services/post/postDeleteById');
+const postByQuery = require('../services/post/postByQuery');
 const { created, success, noContent } = require('../utils/dictionary/statusCode');
 
 const postCreateController = async (request, resolve, next) => {
@@ -61,10 +62,22 @@ const postDeleteController = async (request, resolve, next) => {
   }
 };
 
+const postSearchListController = async (request, resolve, next) => {
+  try {
+    const searchQuery = request.queryParam;
+    const searchResult = await postByQuery(searchQuery);
+    return resolve.status(success).json(searchResult);
+  } catch (error) {
+    console.log('GET POST BY SEARCH: ', error);
+    return next(error);
+  }
+};
+
 module.exports = {
   postCreateController,
   postsListController,
   postByIdController,
   postUpdateController,
   postDeleteController,
+  postSearchListController,
 };
