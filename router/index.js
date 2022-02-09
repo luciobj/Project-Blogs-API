@@ -4,6 +4,7 @@ const {
   userLoginController,
   usersListController,
   userByIdController,
+  userDeleteController,
 } = require('../controllers/userControllers');
 const {
   categoryCreateController,
@@ -32,5 +33,6 @@ router.get('/post', tokenValidate, postsListController);
 router.get('/post/:id', tokenValidate, postByIdController);
 router.put('/post/:id', tokenValidate, userValidate, postUpdateController);
 router.delete('/post/:id', tokenValidate, postDeleteController);
+router.delete('/user/me', tokenValidate, userDeleteController);
 
 module.exports = router;
