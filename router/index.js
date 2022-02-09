@@ -12,6 +12,7 @@ const {
 const {
   postCreateController,
   postsListController,
+  postsByIdController,
 } = require('../controllers/postControllers');
 const tokenValidate = require('../middlewares/tokenValidate');
 
@@ -25,5 +26,6 @@ router.post('/categories', tokenValidate, categoryCreateController);
 router.get('/categories', tokenValidate, categoriesListController);
 router.post('/post', tokenValidate, postCreateController);
 router.get('/post', tokenValidate, postsListController);
+router.get('/post/:id', tokenValidate, postsByIdController);
 
 module.exports = router;
