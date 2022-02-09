@@ -2,10 +2,10 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { User, BlogPost } = require('../../models');
 // const PostsCategoryCreate = require('./PostsCategoryCreate');
-const postValidate = require('./postValidate');
+const postCrateValidate = require('./postCreateValidate');
 
 const postCreate = async (post, token) => {
-  await postValidate(post);
+  await postCrateValidate(post);
   const { data } = jwt.verify(token, process.env.JWT_SECRET);
   const { email } = data;
   const { id: userId } = await User.findOne({ where: { email } });

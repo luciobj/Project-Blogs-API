@@ -1,10 +1,10 @@
-const { postSchema } = require('../../utils/dictionary/schemas');
+const { postCreateSchema } = require('../../utils/dictionary/schemas');
 const errorConstructor = require('../../utils/functions/errorConstructor');
 const { conflict, badRequest } = require('../../utils/dictionary/statusCode');
 const categoriesCheck = require('./categoriesCheck');
 
 const postValidate = async (post) => {
-  const { error } = postSchema.validate(post);
+  const { error } = postCreateSchema.validate(post);
   const { categoryIds } = post;
   if (!error && categoryIds && categoryIds !== []) {
     const check = categoriesCheck(categoryIds);

@@ -12,9 +12,11 @@ const {
 const {
   postCreateController,
   postsListController,
-  postsByIdController,
+  postByIdController,
+  postUpdateController,
 } = require('../controllers/postControllers');
 const tokenValidate = require('../middlewares/tokenValidate');
+const userValidate = require('../middlewares/userValidate');
 
 const router = express.Router();
 
@@ -26,6 +28,7 @@ router.post('/categories', tokenValidate, categoryCreateController);
 router.get('/categories', tokenValidate, categoriesListController);
 router.post('/post', tokenValidate, postCreateController);
 router.get('/post', tokenValidate, postsListController);
-router.get('/post/:id', tokenValidate, postsByIdController);
+router.get('/post/:id', tokenValidate, postByIdController);
+router.put('/post/:id', tokenValidate, userValidate, postUpdateController);
 
 module.exports = router;

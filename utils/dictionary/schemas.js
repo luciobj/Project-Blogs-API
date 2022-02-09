@@ -12,14 +12,20 @@ const loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-const postSchema = Joi.object({
+const postCreateSchema = Joi.object({
   title: Joi.string().required(),
   content: Joi.string().required(),
   categoryIds: Joi.array().required(),
 });
 
+const postUpdateSchema = Joi.object({
+  title: Joi.string().required(),
+  content: Joi.string().required(),
+});
+
 module.exports = {
   userSchema,
   loginSchema,
-  postSchema,
+  postCreateSchema,
+  postUpdateSchema,
 };
