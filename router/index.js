@@ -14,6 +14,7 @@ const {
   postsListController,
   postByIdController,
   postUpdateController,
+  postDeleteController,
 } = require('../controllers/postControllers');
 const tokenValidate = require('../middlewares/tokenValidate');
 const userValidate = require('../middlewares/userValidate');
@@ -30,5 +31,6 @@ router.post('/post', tokenValidate, postCreateController);
 router.get('/post', tokenValidate, postsListController);
 router.get('/post/:id', tokenValidate, postByIdController);
 router.put('/post/:id', tokenValidate, userValidate, postUpdateController);
+router.delete('/post/:id', tokenValidate, postDeleteController);
 
 module.exports = router;

@@ -2,7 +2,8 @@ const postCreate = require('../services/post/postCreate');
 const postsList = require('../services/post/postsList');
 const postById = require('../services/post/postById');
 const postUpdate = require('../services/post/postUpdate');
-const { created, success } = require('../utils/dictionary/statusCode');
+const postDeleteById = require('../services/post/postDeleteById');
+const { created, success, noContent } = require('../utils/dictionary/statusCode');
 
 const postCreateController = async (request, resolve, next) => {
   try {
@@ -28,7 +29,7 @@ const postsListController = async (_request, resolve, next) => {
 
 const postByIdController = async (request, resolve, next) => {
   try {
-    const { id } = request.paramsl;
+    const { id } = request.params;
     const selectedPost = await postById(id);
     return resolve.status(success).json(selectedPost);
   } catch (error) {
@@ -49,9 +50,21 @@ const postUpdateController = async (request, resolve, next) => {
   }
 };
 
+const postDeleteController = async (request, resolve, next) => {
+  try {
+    const { id } = request.params;
+    await postDeleteById(id);
+    return resolve.status(noContent).json();
+  } catch (error) {
+    console.log('DELETE POST BY ID: ', error);
+    return next(error);
+  }
+};
+
 module.exports = {
   postCreateController,
   postsListController,
   postByIdController,
   postUpdateController,
+  postDeleteController,
 };
