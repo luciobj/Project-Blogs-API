@@ -33,7 +33,7 @@ router.post('/post', tokenValidate, postCreateController);
 router.get('/post', tokenValidate, postsListController);
 router.get('/post/:id', tokenValidate, postByIdController);
 router.put('/post/:id', tokenValidate, userValidate, postUpdateController);
-router.delete('/post/:id', tokenValidate, postDeleteController);
+router.delete('/post/:id', tokenValidate, userValidate, postDeleteController);
 router.delete('/user/me', tokenValidate, userDeleteController);
 router.get('/post/search', tokenValidate, postSearchListController);
 

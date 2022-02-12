@@ -11,7 +11,7 @@ const userValidate = async (request, _resolve, next) => {
     const { id: userId } = await User.findOne({ where: { email } });
     const post = await BlogPost.findOne({ where: { id } });
     if (!post) {
-      next(errorConstructor(notFound, 'Post not found'));
+      next(errorConstructor(notFound, 'Post does not exist'));
     }
     const { userId: postUserId } = post;
     if (userId !== postUserId) {
