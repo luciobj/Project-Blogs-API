@@ -21,7 +21,6 @@ const userLoginController = async (request, resolve, next) => {
     const user = request.body;
     const token = await userLogin(user);
     request.headers.authorization = token;
-    // request.userId = x;
     return resolve.status(success).json({ token });
   } catch (error) {
     console.log('POST LOGIN USER: ', error);
@@ -52,8 +51,8 @@ const userByIdController = async (request, resolve, next) => {
 
 const userDeleteController = async (request, resolve, next) => {
   try {
-    const token = request.authorization;
-    await userDeleteCurrent(token);
+    const { userId } = request;
+    await userDeleteCurrent(userId);
     request.authorization = '';
     return resolve.status(noContent).json();
   } catch (error) {
