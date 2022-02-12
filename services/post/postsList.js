@@ -3,9 +3,17 @@ const { BlogPost, User, Category } = require('../../models');
 const postsList = async () => {
   const dbList = await BlogPost.findAll({
     include: [
-      { model: User, as: 'user', through: { attributes: [] } },
-      { model: Category, as: 'category', through: { attributes: [] } }],
-    });
+      { model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      { model: Category,
+        as: 'categories',
+        through: { attributes: [] },
+      },
+    ],
+    attributes: { exclude: ['UserId'] },
+  });
   return dbList;
 };
 

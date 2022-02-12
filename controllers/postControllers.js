@@ -1,6 +1,5 @@
 const postCreate = require('../services/post/postCreate');
 const postsList = require('../services/post/postsList');
-// const postListAlter = require('../services/post/postListAlter');
 const postById = require('../services/post/postById');
 const postUpdate = require('../services/post/postUpdate');
 const postDeleteById = require('../services/post/postDeleteById');
@@ -22,7 +21,6 @@ const postCreateController = async (request, resolve, next) => {
 const postsListController = async (_request, resolve, next) => {
   try {
     const blogPosts = await postsList();
-    // const result = await postListAlter(blogPosts);
     return resolve.status(success).json(blogPosts);
   } catch (error) {
     console.log('GET ALL POST: ', error);

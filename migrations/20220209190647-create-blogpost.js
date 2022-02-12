@@ -22,7 +22,6 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id',
-          deferrable: Sequelize.INITIALLY_IMMEDIATE,
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
