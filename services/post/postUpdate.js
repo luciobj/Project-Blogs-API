@@ -1,18 +1,15 @@
-const { BlogPost } = require('../../models');
-const { notFound } = require('../../utils/dictionary/statusCode');
-const errorConstructor = require('../../utils/functions/errorConstructor');
+const { BlogPost, Category } = require('../../models');
 const postUpdateValidate = require('./postUpdateValidate');
 
 const postUpdate = async (post, id) => {
   await postUpdateValidate(post);
   const { title, content } = post;
-  const updatedPost = await BlogPost.updateOne(
-    { title, content },
-    { where: id },
-  );
-  if (!updatedPost) {
-    throw errorConstructor(notFound, 'Post not found');
-  }
+  await BlogPost.update({ title, content }, { where: { id } });
+  const updatedPost = await BlogPost
+    .findOne({
+      where: { id },
+      include: [{ model: Category, as: 'categories', through: { attributes: [] } }],
+      attributes: { exclude: ['UserId', 'id', 'published', 'updated'] } });
   return updatedPost;
 };
 

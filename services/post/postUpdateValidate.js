@@ -2,7 +2,7 @@ const { postUpdateSchema } = require('../../utils/dictionary/schemas');
 const errorConstructor = require('../../utils/functions/errorConstructor');
 const { badRequest } = require('../../utils/dictionary/statusCode');
 
-const postValidate = async (post) => {
+const postUpdateValidate = async (post) => {
   if (post.categoryIds) {
     throw errorConstructor(badRequest, 'Categories cannot be edited');
   }
@@ -13,4 +13,4 @@ const postValidate = async (post) => {
   throw errorConstructor(badRequest, error.message);
 };
 
-module.exports = postValidate;
+module.exports = postUpdateValidate;
