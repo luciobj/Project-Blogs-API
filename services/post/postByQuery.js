@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { BlogPost } = require('../../models');
+const { BlogPost, User, Category } = require('../../models');
 
 const postByQuery = async (query) => {
   const dbList = await BlogPost.findAll({
@@ -10,8 +10,8 @@ const postByQuery = async (query) => {
       ],
     }, 
     include: [
-      { model: 'User', as: 'user', through: { attributes: [] } },
-      { model: 'Category', as: 'categories', through: { attributes: [] } }],
+      { model: User, as: 'user' },
+      { model: Category, as: 'categories', through: { attributes: [] } }],
     });
   return dbList;
 };

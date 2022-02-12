@@ -64,7 +64,7 @@ const postDeleteController = async (request, resolve, next) => {
 
 const postSearchListController = async (request, resolve, next) => {
   try {
-    const searchQuery = request.queryParam;
+    const searchQuery = request.query.q;
     const searchResult = await postByQuery(searchQuery);
     return resolve.status(success).json(searchResult);
   } catch (error) {
