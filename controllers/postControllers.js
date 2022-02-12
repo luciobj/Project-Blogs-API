@@ -1,5 +1,6 @@
 const postCreate = require('../services/post/postCreate');
 const postsList = require('../services/post/postsList');
+// const postListAlter = require('../services/post/postListAlter');
 const postById = require('../services/post/postById');
 const postUpdate = require('../services/post/postUpdate');
 const postDeleteById = require('../services/post/postDeleteById');
@@ -9,8 +10,8 @@ const { created, success, noContent } = require('../utils/dictionary/statusCode'
 const postCreateController = async (request, resolve, next) => {
   try {
     const post = request.body;
-    const token = request.authorization;
-    const result = await postCreate(post, token);
+    const { userId } = request;
+    const result = await postCreate(post, userId);
     return resolve.status(created).json(result);
   } catch (error) {
     console.log('POST CREATE BLOGPOST: ', error);
@@ -20,8 +21,9 @@ const postCreateController = async (request, resolve, next) => {
 
 const postsListController = async (_request, resolve, next) => {
   try {
-    const result = await postsList();
-    return resolve.status(success).json(result);
+    const blogPosts = await postsList();
+    // const result = await postListAlter(blogPosts);
+    return resolve.status(success).json(blogPosts);
   } catch (error) {
     console.log('GET ALL POST: ', error);
     return next(error);

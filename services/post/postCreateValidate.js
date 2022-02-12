@@ -1,15 +1,15 @@
 const { postCreateSchema } = require('../../utils/dictionary/schemas');
 const errorConstructor = require('../../utils/functions/errorConstructor');
-const { conflict, badRequest } = require('../../utils/dictionary/statusCode');
+const { badRequest } = require('../../utils/dictionary/statusCode');
 const categoriesCheck = require('./categoriesCheck');
 
 const postValidate = async (post) => {
   const { error } = postCreateSchema.validate(post);
   const { categoryIds } = post;
   if (!error && categoryIds && categoryIds !== []) {
-    const check = categoriesCheck(categoryIds);
+    const check = await categoriesCheck(categoryIds);
     if (!check) {
-      throw errorConstructor(conflict, '"categoryIds" not found');
+      throw errorConstructor(badRequest, '"categoryIds" not found');
     }
     return true;
   }

@@ -20,7 +20,8 @@ const userLoginController = async (request, resolve, next) => {
   try {
     const user = request.body;
     const token = await userLogin(user);
-    request.authorization = token;
+    request.headers.authorization = token;
+    // request.userId = x;
     return resolve.status(success).json({ token });
   } catch (error) {
     console.log('POST LOGIN USER: ', error);

@@ -10,13 +10,13 @@ const tokenValidate = async (request, _resolve, next) => {
     next(errorConstructor(unauthorized, 'Token not found'));
   }
   try {
-    const { data } = jwt.verify(token, process.env.JWT_SECRET);
-    const { email } = data;
+    const { data: { email } } = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ where: { email } });
     if (!user) {
       console.log('TOKEN VALIDATION: user not found');
       next(errorConstructor(badRequest, 'Expired or invalid token'));
     }
+    request.userId = user.dataValues.id;
     next();
   } catch (error) {
     console.log('TOKEN VALIDATION: ', error);
